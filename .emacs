@@ -189,7 +189,10 @@
 
 
 ;; magit
+(require 'magit)
 (setq magit-emacsclient-executable "/usr/local/bin/emacsclient")
+(require 'magit-gitflow)
+(add-hook 'magit-mode-hook 'turn-on-magit-gitflow)
 
 ;; projectile
 (require 'projectile)
@@ -245,3 +248,12 @@
 ;; helm mode
 (require 'helm)
 (helm-mode 1)
+
+;; Save temporary files in temp folder
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; vcl-mode
+(setq vcl-indent-level 4)
